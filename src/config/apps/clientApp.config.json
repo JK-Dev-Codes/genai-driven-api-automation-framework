@@ -1,0 +1,10 @@
+{
+  "appName": "<your-app-name>",
+  "baseURL": "<https://your-api-base-url>",
+  "auth": {
+    "type": "Bearer",
+    "token": "${YOUR_API_TOKEN}"
+  },
+  "headers": {},
+  "timeout": 30000
+}

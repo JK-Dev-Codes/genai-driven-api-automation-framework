@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.env
+
+# Test outputs
+output/*.html
+output/*.json
+output/generated-steps/
+output/playwright-report/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db

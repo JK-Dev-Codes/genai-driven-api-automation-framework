@@ -1,0 +1,7 @@
+# Write your natural language prompt here.
+# The AI engine will convert this into BDD Gherkin steps.
+#
+# Example:
+# Create an API test for <describe what the API does>.
+# The response should return HTTP status <expected status>.
+# Verify that the response contains <field name>.

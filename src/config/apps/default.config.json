@@ -1,0 +1,9 @@
+{
+  "appName": "default",
+  "baseURL": "${BASE_URL}",
+  "auth": {
+    "type": "None"
+  },
+  "headers": {},
+  "timeout": 30000
+}

@@ -1,0 +1,8 @@
+{
+  "name": "<contractName>",
+  "method": "GET",
+  "endpoint": "/<your-endpoint>",
+  "expectedStatus": 200,
+  "payload": {},
+  "responseSchema": {}
+}

@@ -1,0 +1,31 @@
+{
+  "name": "genai-driven-api-automation-framework",
+  "version": "1.0.0",
+  "description": "A GenAI-powered, BDD-based API automation framework using TypeScript + Playwright + Cucumber",
+  "scripts": {
+    "test": "npx cucumber-js",
+    "test:report": "npx cucumber-js --format html:output/cucumber-report.html",
+    "test:app": "APP_NAME=%npm_config_app% npx cucumber-js",
+    "parse:prompt": "ts-node src/ai/promptParser.ts",
+    "generate:steps": "ts-node src/ai/stepGenerator.ts",
+    "build": "tsc",
+    "clean": "rimraf dist output/generated-steps"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "^10.8.0",
+    "@playwright/test": "^1.44.0",
+    "dotenv": "^16.4.5",
+    "openai": "^4.52.0",
+    "string-similarity": "^4.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/string-similarity": "^4.0.2",
+    "rimraf": "^5.0.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
