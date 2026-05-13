@@ -1,8 +1,9 @@
 {
   "appName": "default",
-  "baseURL": "${BASE_URL}",
+  "baseURL": "${API_BASE_URL}",
   "auth": {
-    "type": "None"
+    "type": "Bearer",
+    "token": "${CLIENT_API_TOKEN}"
   },
   "headers": {},
   "timeout": 30000

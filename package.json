@@ -6,8 +6,11 @@
     "test": "npx cucumber-js",
     "test:report": "npx cucumber-js --format html:output/cucumber-report.html",
     "test:app": "APP_NAME=%npm_config_app% npx cucumber-js",
+    "prompt": "ts-node src/ai/runFromPrompt.ts",
+    "prompt:file": "ts-node src/ai/runFromPrompt.ts",
     "parse:prompt": "ts-node src/ai/promptParser.ts",
     "generate:steps": "ts-node src/ai/stepGenerator.ts",
+    "bootstrap": "ts-node src/ai/bootstrap.ts",
     "build": "tsc",
     "clean": "rimraf dist output/generated-steps"
   },

@@ -19,6 +19,12 @@ export class CustomWorld extends World {
   /** Optional bearer token set by auth steps */
   authToken?: string;
 
+  /**
+   * Shared key-value store for passing data between steps within a scenario.
+   * e.g. saving a created entity's name/id and referencing it in later steps.
+   */
+  dataMap: Map<string, string> = new Map();
+
   constructor(options: IWorldOptions) {
     super(options);
     // Resolve appName from Cucumber world parameters (set via cucumber.js worldParameters)

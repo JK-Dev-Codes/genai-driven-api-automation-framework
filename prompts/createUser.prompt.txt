@@ -1,7 +1,48 @@
-# Write your natural language prompt here.
-# The AI engine will convert this into BDD Gherkin steps.
+# ──────────────────────────────────────────────────────────────────────────────
+# Prompt Format Guide
+# Write one operation per block: plain English description + Endpoint + Payload
+# The AI will convert this into a runnable Gherkin feature file.
 #
-# Example:
-# Create an API test for <describe what the API does>.
-# The response should return HTTP status <expected status>.
-# Verify that the response contains <field name>.
+# HOW TO USE:
+#   1. Copy this file: cp prompts/createUser.prompt.txt prompts/yourPrompt.txt
+#   2. Remove the '#' from the lines you want and fill in real values
+#   3. Run: npm run prompt -- prompts/yourPrompt.txt PDS-XXXXX.feature
+# ──────────────────────────────────────────────────────────────────────────────
+
+# POST — Create an entity
+# And I create a <entity> with name "<Name_>" appended with timestamp and description "<description>"
+# Endpoint: https://your-api-base-url/<resource>
+# Payload: {
+#   "name": "<Name_>",
+#   "description": "<description>",
+#   "draft": false
+# }
+
+# GET — Retrieve a list
+# And I GET all <entities>.
+# Endpoint: https://your-api-base-url/<resource>?includeDisabled=false
+
+# Chained POST — Create a child entity (references parent ID)
+# And I create a <child-entity> under the <parent-entity>.
+# Endpoint: https://your-api-base-url/<child-resource>
+# Payload: {
+#   "name": "<ChildName_>",
+#   "description": "<description>",
+#   "<parentId>": "<parent-uuid>",
+#   "draft": false
+# }
+
+# GET — Search
+# And I search for the created <entity>.
+# Endpoint: https://your-api-base-url/global/search?term={term}&includeDisabled=false
+
+# PUT — Update (with specific field values)
+# And I update the <entity>.
+# Endpoint: https://your-api-base-url/<resource>/{id}
+# | field | value         |
+# | name  | <UpdatedName> |
+
+# PUT — Disable
+# Disable the <entity>.
+# Endpoint: https://your-api-base-url/<resource>/hierarchy/{id}/enabled/false/draft/false
+# Inline payload: { "enabled": false, "draft": false }

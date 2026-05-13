@@ -88,8 +88,17 @@ export async function executeAPI(
 
   const duration = Date.now() - startTime;
   const status = playwrightResponse.status();
-  const body = await playwrightResponse.json().catch(() => null);
   const responseHeaders = playwrightResponse.headers() as Record<string, string>;
+
+  // Try JSON first; fall back to raw text so the body is never silently null
+  let body: unknown = null;
+  try {
+    body = await playwrightResponse.json();
+  } catch {
+    const text = await playwrightResponse.text().catch(() => '');
+    body = text || null;
+    if (text) logger.debug(`[EXECUTOR] Body (text): ${text}`);
+  }
 
   logger.info(`[EXECUTOR] Response: ${status} (${duration}ms)`);
   logger.debug(`[EXECUTOR] Body: ${JSON.stringify(body, null, 2)}`);

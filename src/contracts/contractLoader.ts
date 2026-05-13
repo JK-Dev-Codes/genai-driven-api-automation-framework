@@ -28,3 +28,41 @@ export function listContracts(): string[] {
     .filter((f) => f.endsWith('.contract.json'))
     .map((f) => f.replace('.contract.json', ''));
 }
+
+/**
+ * Build a human-readable summary of all contract definitions.
+ * Injected into the AI prompt so it has ground-truth API schema knowledge —
+ * which fields are required per operation, and which fields appear in responses.
+ */
+export function buildContractContext(): string {
+  const names = listContracts();
+  if (names.length === 0) return '';
+
+  return names
+    .map((name) => {
+      const c = loadContract(name);
+      const lines: string[] = [
+        `### ${c.entity} — endpoint: ${c.endpoint}`,
+        `  mapKey: "${c.mapKey}"`,
+        c.payloadFile ? `  POST data file: "${c.payloadFile}"` : '',
+        c.updatePayloadFile ? `  PUT data file: "${c.updatePayloadFile}"` : '',
+      ];
+
+      for (const [op, contract] of Object.entries(c.operations)) {
+        if (!contract) continue;
+        lines.push(`  ${op}:`);
+        if (contract.requiredFields?.length) {
+          lines.push(`    required body fields: [${contract.requiredFields.join(', ')}]`);
+        }
+        if (contract.responseFields?.length) {
+          lines.push(`    response fields: [${contract.responseFields.join(', ')}]`);
+        }
+        if (contract.responseIsArray) {
+          lines.push(`    returns: bare JSON array`);
+        }
+      }
+
+      return lines.filter(Boolean).join('\n');
+    })
+    .join('\n\n');
+}

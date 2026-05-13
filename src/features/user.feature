@@ -1,18 +1,10 @@
-Feature: <Your Feature Name>
+# ──────────────────────────────────────────────────────────────────────────────
+# user.feature — add your own scenarios here, or use:
+#   npm run prompt
+# to let the AI generate and run tests from a plain-English description.
+# ──────────────────────────────────────────────────────────────────────────────
 
-  # Add your scenarios below
-  # Example:
-  #
-  # Scenario: <Scenario name>
-  #   Given the API base URL is configured
-  #   When I send a "GET" request to "/<your-endpoint>"
-  #   Then the response status should be 200
-  #   And the response body should not be empty
-      }
-      """
-    Then the response status should be 200
-
-  Scenario: Delete a user
-    Given the API base URL is configured
-    When I send a "DELETE" request to "/users/1"
-    Then the response status should be 200
+Feature: User-defined scenarios
+  # Add your Scenario blocks below, or run:
+  #   npm run prompt -- prompts/yourPrompt.prompt.txt PDS-XXXXX.feature
+  # to have the AI generate a feature file for you.
